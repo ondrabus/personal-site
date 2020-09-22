@@ -1,0 +1,291 @@
+body, html, #__next, .wrapper
+    margin: 0
+    padding: 0
+    width: 100%
+    height: 100%
+    font-family: Nunito, sans-serif
+
+.wrapper
+    display: flex
+    flex-direction: column
+
+main
+    display: flex
+    flex-direction: column
+    flex-grow: 1
+
+.content p a
+    color: #36c988
+    text-decoration: underline
+
+    &:hover
+        background: #36c988
+        color: #fff
+        text-decoration: none
+
+
+@keyframes blinker
+    from, to
+        border-color: transparent
+    50%
+        border-color: #ccc
+
+.teaser
+    display: none
+
+    @include tablet_plus
+        height: 80vh
+        margin-top: -100px
+        display: flex
+        justify-content: center
+        flex-direction: column
+
+        p
+            color: $background
+            font-size: 2.5rem
+            text-align: center
+            text-shadow: 0 0 4px rgba(0,0,0,.4)
+            padding: 0 20px
+
+            span::after
+                content: ""
+                border-right: 2px solid #cccccc
+                animation: blinker 1s step-end infinite
+
+            span.active::after
+                animation: none
+
+.content
+    background: $background
+    margin: 30px 30px
+
+    
+    @include tablet
+        margin: 30px 20px
+
+    @include desktop
+        margin: 0px auto 30px
+        width: 60%
+
+    > h1
+        font-family: NeoSans
+        font-size: 1.5rem
+        text-transform: uppercase
+        margin: 2.5rem 0 .5rem
+
+.grid
+    display: grid
+    width: 100%
+    grid-template-columns: 1fr 1fr
+    column-gap: 1rem
+    row-gap: 1rem
+
+    @include desktop
+        column-gap: 2rem
+        row-gap: 2rem
+
+.cols
+    display: flex
+    flex-direction: row
+
+.rows
+    display: flex
+    flex-direction: column
+    
+article
+    grid-column-start: 1
+    grid-column-end: span col-2
+    display: flex
+
+    @include tablet_plus
+        grid-column-start: auto
+        grid-column-end: auto
+
+    h1 a
+        color: $foreground
+        text-decoration: underline
+
+    h1 a:hover
+        color: $background
+        background: $primary
+        text-decoration: none
+
+
+    h1
+        font-size: 1.3rem
+
+    p
+        font-size: 0.9rem
+        margin: 0
+
+    img
+        width: 100%
+
+    .img
+        flex-basis: 30%
+
+        a
+            position: relative
+            display: block
+
+        &.video a::before
+            content: ""
+            position: absolute
+            background: #ffffff
+            width: 20px
+            height: 20px
+            left: 50%
+            top: 50%
+            margin: -10px 0 0 -10px
+        &.video a::after
+            font-family: FontAwesome
+            content: "\f16a"
+            position: absolute
+            left: 50%
+            top: 50%
+            font-size: 64px
+            margin: -32px 0 0 -32px
+            color: #666
+
+
+
+    .right
+        flex-basis: 70%
+        margin-left: 10px
+
+    .tags
+        list-style-type: none
+        margin: 10px -5px 0
+        padding: 0
+        flex-grow: 1
+        align-items: baseline
+        flex-wrap: wrap
+
+        a
+            padding: 3px 7px
+            margin: 5px
+            text-decoration: none
+            border-radius: 4px
+            font-family: Nunito
+            font-size: 0.9rem
+            opacity: .75
+            white-space: nowrap
+            
+            &:hover
+                opacity: 1
+
+    .date
+        margin: 10px 0 0
+        font-size: .8rem
+        color: #999
+        flex-grow: 1
+        text-align: right
+
+a, .filter button
+        &.red
+            background: #EE0000
+            color: #fff
+        &.green
+            background: #36c988
+            color: #fff
+        &.purple
+            background: #362066
+            color: #fff
+        &.yellow
+            background: #fec21e
+            color: #fff
+        &.orange
+            background: #f05e22
+            color: #fff
+        &.blue
+            background: #004ca3
+            color: #fff
+
+.filter
+    display: flex
+    margin: 0 -5px 0 -30px
+    padding: 0 0 0 25px
+    flex-grow: 1
+    align-items: baseline
+    flex-wrap: wrap
+    position: relative
+
+    &::before
+        position: absolute
+        top: 4px
+        left: 0
+        content: "\f0b0"
+        width: 30px
+        font-family: FontAwesome
+        font-size: 1.5rem
+
+    button
+        padding: 3px 7px
+        margin: 5px
+        border-radius: 4px
+        font-family: Nunito
+        font-size: 0.9rem
+        opacity: .75
+        white-space: nowrap
+        border: 0
+        cursor: pointer
+        background: #ddd
+        color: #333
+
+        &:hover, &.selected
+            opacity: 1
+        &:focus
+            outline: 0
+
+.alternating
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin: 0
+
+    &:last-of-type
+        margin-bottom: 0
+
+    h2
+        font-family: Nunito, sans-serif
+        font-size: 2.2rem
+        text-transform: none
+        font-weight: normal
+        margin: 1.5rem 0 .5rem
+
+    @include tablet_plus
+        flex-direction: row
+        margin: 0 auto
+
+        &:first-child
+            margin-top: 0
+
+        &:nth-child(odd)
+            flex-direction: row-reverse
+            text-align: right
+
+            .text
+                padding: 0 50px 0 0
+
+        > div
+            flex-basis: 50%
+            box-sizing: border-box
+
+    img
+        width: 100%
+
+    .text
+        display: flex
+        padding: 30px
+        flex-direction: column
+
+        @include tablet_plus
+            padding: 0 0 0 50px
+            justify-content: center
+
+    p
+        padding: 1rem 0
+        margin: 0
+        font-family: Georgia, 'Times New Roman', Times, serif
+        font-size: 1.3rem
+        line-height: 2rem

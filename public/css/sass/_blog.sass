@@ -1,0 +1,104 @@
+.blog
+    display: flex
+    flex-direction: column
+    width: 700px
+    margin: auto
+
+    h1, h2
+        font-family: Nunito, sans-serif
+        font-size: 2.5rem
+        text-transform: none
+        font-weight: normal
+        margin: 2.5rem 0 .5rem
+
+    h2
+        font-size: 2.2rem
+        margin: 1.5rem 0 .5rem
+
+    a
+        color: #36c988
+        text-decoration: underline
+
+        &:hover
+            background: #36c988
+            color: #fff
+            text-decoration: none
+
+    ul
+        display: flex
+        flex-direction: row
+        list-style-type: none
+        margin: 0
+        padding: 0
+
+        &.info
+            font-size: .9rem
+            
+            > li:not(:last-child):after
+                content: "·"
+                padding: 0 5px
+                display: inline-block
+
+        &.tags li
+            margin: 0 5px 0 0
+
+    p
+        margin: 1rem 0
+        font-family: Georgia, 'Times New Roman', Times, serif
+        font-size: 1.3rem
+        line-height: 2rem
+
+        code
+            color: #0000e6
+            background: #eeeeee
+            padding: 0 5px
+
+        em
+            font-style: italic
+            color: #0000e6
+
+    .code
+        position: relative
+        margin: 1rem 0
+
+        pre
+            margin: 0
+
+        textarea
+            width: 0
+            height: 0
+            position: absolute
+            bottom: 0
+            right: 0
+            z-index: -1
+        
+        a
+            position: absolute
+            bottom: 0
+            right: 0
+            width: 100px
+            height: 30px
+            background: #0078d7
+            color: #fff
+            content: "Copy"
+            text-align: center
+            line-height: 30px
+            cursor: pointer
+            font-size: 1rem
+            font-family: Nunito, sans-serif
+
+    figure
+        margin: 1rem 0
+    
+    .dots
+        display: flex
+        font-family: Georgia, 'Times New Roman', Times, serif
+        font-size: 1.3rem
+        letter-spacing: 1rem
+        text-align: center
+        margin: .5rem 0 1.5rem
+
+        &::after
+            width: 100%
+            content: "..."
+

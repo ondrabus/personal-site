@@ -1,0 +1,34 @@
+.fullscreen-bg
+    display: none
+
+    @include tablet_plus
+        position: absolute
+        display: block
+        left: 0
+        top: 0
+        width: 100%
+        height: 80%
+        overflow: hidden
+        z-index: -1
+
+        .video
+            width: 100%
+            height: 100%
+        
+        video
+            width: 100%
+            height: 100%
+            top: 0
+            left: 0
+            z-index: -999
+            object-fit: cover
+
+        i
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            display: block
+            z-index: 1
+            background: url('../img/overlay.png')

@@ -1,0 +1,38 @@
+$tablet-width: 48rem
+$desktop-width: 80rem
+
+@mixin tablet
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - .0625rem})
+        @content
+
+@mixin tablet_plus
+    @media (min-width: #{$tablet-width})
+        @content
+
+@mixin desktop
+    @media (min-width: #{$desktop-width})
+        @content
+
+.visible-xs
+    display: block
+
+    @include tablet
+        display: none
+	
+    @include desktop
+        display: none
+
+.visible-md
+    display: none
+
+    @include tablet
+        display: block !important 
+
+.visible-lg
+    display: none
+
+    @include desktop
+        display: block !important
+
+a, a:hover
+    transition: all 0.3s ease
