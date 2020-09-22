@@ -245,6 +245,8 @@ body, html, #__next, .wrapper {
 .wrapper {
   display: flex;
   flex-direction: column;
+  height: auto;
+  min-height: 100vh;
 }
 
 main {
@@ -303,11 +305,6 @@ main {
   background: #ffffff;
   margin: 30px 30px;
 }
-@media (min-width: 48rem) and (max-width: 79.9375rem) {
-  .content {
-    margin: 30px 20px;
-  }
-}
 @media (min-width: 80rem) {
   .content {
     margin: 0px auto 30px;
@@ -318,7 +315,17 @@ main {
   font-family: NeoSans;
   font-size: 1.5rem;
   text-transform: uppercase;
-  margin: 2.5rem 0 0.5rem;
+  margin: 0 0 0.5rem;
+}
+@media (min-width: 48rem) and (max-width: 79.9375rem) {
+  .content > h1 {
+    margin: 1rem 0 0.5rem;
+  }
+}
+@media (min-width: 80rem) {
+  .content > h1 {
+    margin: 2.5rem 0 0.5rem;
+  }
 }
 
 .grid {

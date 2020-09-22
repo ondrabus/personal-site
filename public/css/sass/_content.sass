@@ -8,6 +8,8 @@ body, html, #__next, .wrapper
 .wrapper
     display: flex
     flex-direction: column
+    height: auto
+    min-height: 100vh
 
 main
     display: flex
@@ -59,10 +61,6 @@ main
     background: $background
     margin: 30px 30px
 
-    
-    @include tablet
-        margin: 30px 20px
-
     @include desktop
         margin: 0px auto 30px
         width: 60%
@@ -71,7 +69,13 @@ main
         font-family: NeoSans
         font-size: 1.5rem
         text-transform: uppercase
-        margin: 2.5rem 0 .5rem
+        margin: 0 0 .5rem
+
+        @include tablet
+            margin: 1rem 0 .5rem
+
+        @include desktop
+            margin: 2.5rem 0 .5rem
 
 .grid
     display: grid
