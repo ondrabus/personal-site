@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import BlogPosts from '../components/blogPosts';
 import React from 'react';
 import ContentService from '../services/ContentService';
@@ -41,6 +42,14 @@ const Home: React.FC<IHomeProps> = ({ content }) => {
         </section>
 
         <BlogPosts content={content} />
+
+        <section className="content">
+          <p>
+            <Link href="/blog" as="/blog">
+                <a title="More published content">See more...</a>
+            </Link>
+          </p>
+        </section>
 
       </main>
 
