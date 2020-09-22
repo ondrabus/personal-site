@@ -1,4 +1,4 @@
-var texts = ["I write tutorials about web technologies...", "I publish videos about Jamstack...", "I drive buses..."];
+var texts = ["I write tutorials about web technologies...", "I publish videos about Jamstack...", "I host weekly live streams...", "I speak at conferences...", "I drive buses..."];
 var element = document.querySelector(".teaser p span");
 var index = 0;
 var cursor = 0;
