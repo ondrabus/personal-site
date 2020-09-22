@@ -33,6 +33,7 @@ const Home: React.FC<IHomeProps> = ({ content }) => {
       <Head>
         <title>Ondrabus</title>
         <meta property="og:title" content="Ondrabus" />
+        <meta property="og:image" content="/img/website.jpg" />
       </Head>
       <Header className=""></Header>
 
