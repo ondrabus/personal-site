@@ -48,10 +48,10 @@ const Home: React.FC<IHomeProps> = ({ content }) => {
       
       <div className="fullscreen-bg">
         <div className="video">
+            <i></i>
             <video loop muted autoPlay poster="/img/web.jpg">
                 <source src="/img/background.mp4" type="video/mp4" />
             </video>
-            <i></i>
         </div>
       </div>
       <script src="/js/typing.js"></script>
