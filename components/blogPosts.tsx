@@ -15,17 +15,17 @@ const BlogPosts: React.FC<IBlogPostProps> = ({content, tags, types, selectedTag,
 
     tags = tags ?? [];
     types = types ?? [];
-    selectedTag = selectedTag ?? null;
-    selectedType = selectedType ?? null;
+    selectedTag = selectedTag ?? '';
+    selectedType = selectedType ?? '';
 
     let tagSet = new Set();
 
-    if (selectedTag !== null)
+    if (selectedTag !== '')
     {
         tagSet.add(selectedTag);
     }
     let typeSet = new Set();
-    if (selectedType !== null)
+    if (selectedType !== '')
     {
         typeSet.add(selectedType);
     }

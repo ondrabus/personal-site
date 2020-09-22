@@ -25,7 +25,7 @@ export async function getStaticPaths() {
   
   const paths = contentTags.terms.map(t => ['tag', t.codename]).concat(contentTypes.terms.map(t => ['type', t.codename])).map(t => ({ 'params': { 'filter': t }}));
   // add also blog page index without tags and types
-  paths.push({'params': {'filter': null}});
+  paths.push({'params': {'filter': []}});
 
   return {
     paths: paths,
@@ -37,13 +37,13 @@ export const getStaticProps: GetStaticProps = async ({preview, params}) => {
   
   console.log(`Loading blog page content, preview mode is ${!!preview}`);
 
-  const selectedFilter = params.filter ?? [null, null];
+  const selectedFilter = params?.filter ?? [null, null];
   const selectedFilterType = selectedFilter[0] ?? null;
   const selectedFilterValue = selectedFilter[1] ?? null;
 
   const contentService = new ContentService(preview ?? false);
   const allContent = await contentService.getAllContent();
-  const articles = transformContent(allContent.sort((a,b) => b.date?.value?.getTime()-a.date?.value?.getTime()));
+  const articles = transformContent(allContent.sort((a,b) => (b.date.value ?? new Date()).getTime()-(a.date.value ?? new Date()).getTime()));
   const contentTags = await contentService.getContentTags();
   const contentTypes = await contentService.getContentTypes();
 

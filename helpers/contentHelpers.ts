@@ -4,8 +4,8 @@ import { IContentViewModel } from '../viewModels/contentViewModel';
 export function transformContent (content: ContentModel[]):IContentViewModel[] {
     return content.map((c) => ({
         title: c.title.value,
-        imageUrl: c.cover_image_url?.value ?? c.cover_image.value[0].url,
-        date: c.date.value.toISOString().split('T')[0],
+        imageUrl: c.cover_image_url?.value ?? c.cover_image?.value[0].url ?? '',
+        date: c.date?.value?.toISOString().split('T')[0] ?? '',
         url: c.url.value,
         isExternal: c.url.value.startsWith("https"),
         teaser: c.teaser.value,

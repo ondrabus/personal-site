@@ -2,8 +2,8 @@ import { ContentItem, Elements } from '@kentico/kontent-delivery';
 
 export class BlockWithImageModel extends ContentItem {
     public title!: Elements.TextElement;
-    public content: Elements.RichTextElement;
-    public image: Elements.AssetsElement;
+    public content!: Elements.RichTextElement;
+    public image?: Elements.AssetsElement;
 
     constructor(){
         super({

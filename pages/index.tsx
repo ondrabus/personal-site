@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async ({preview}) => {
 
   const contentService = new ContentService(preview ?? false);
   const allContent = await contentService.getAllContent();
-  const articles = transformContent(allContent.sort((a,b) => b.date?.value?.getTime()-a.date?.value?.getTime()).slice(0,4));
+  const articles = transformContent(allContent.sort((a,b) => (b.date.value ?? new Date()).getTime()-(a.date.value ?? new Date()).getTime()).slice(0,4));
 
   const props = {
     content: articles
