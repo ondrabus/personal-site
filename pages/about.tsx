@@ -30,7 +30,7 @@ const About: React.FC<IPageProps> = ({ pageData }) => {
   return (
     <div className="wrapper">
       <Head>
-        <title>Published content - Ondrabus</title>
+        <title>About - Ondrabus</title>
         <meta property="og:title" content="About - Ondrabus" />
         <link rel="canonical" href="/about" />
       </Head>
