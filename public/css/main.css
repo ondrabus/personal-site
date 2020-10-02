@@ -45,7 +45,7 @@ a, a:hover {
   position: absolute;
   font-family: NeoSans;
   text-transform: uppercase;
-  z-index: 3;
+  z-index: 13;
 }
 @media (min-width: 48rem) {
   .logo {
@@ -110,7 +110,7 @@ header.withBackground {
     width: 100%;
     transition: height 0.3s ease;
     box-shadow: 0 0 20px #000;
-    z-index: 1;
+    z-index: 11;
   }
   header.fixed ~ main .teaser {
     margin-top: 0;
@@ -127,7 +127,7 @@ header i {
   height: 100%;
   background: url("../img/header-xs.jpg");
   background-size: cover;
-  z-index: 2;
+  z-index: 12;
 }
 @media (min-width: 48rem) {
   header i {
@@ -135,7 +135,7 @@ header i {
   }
 }
 header input {
-  z-index: 4;
+  z-index: 14;
   width: 43px;
   height: 40px;
   position: absolute;
@@ -157,7 +157,7 @@ header .burger {
   height: 30px;
   right: 20px;
   top: 35px;
-  z-index: 3;
+  z-index: 13;
   display: flex;
   flex-direction: column;
 }
@@ -199,7 +199,7 @@ nav ul {
   width: 100%;
   margin: 0;
   padding: 10px;
-  z-index: 1;
+  z-index: 11;
   align-items: stretch;
   box-sizing: border-box;
   transition: top 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
@@ -334,6 +334,7 @@ main {
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-end;
+  background: transparent;
 }
 
 .banner > div {
