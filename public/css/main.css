@@ -304,6 +304,7 @@ main {
 .content {
   background: #ffffff;
   margin: 30px 30px;
+  z-index: 5;
 }
 @media (min-width: 80rem) {
   .content {
@@ -311,20 +312,44 @@ main {
     width: 60%;
   }
 }
-.content > h1 {
+.content > h1, .content > .header-area > h1 {
   font-family: NeoSans;
   font-size: 1.5rem;
   text-transform: uppercase;
   margin: 0 0 0.5rem;
 }
 @media (min-width: 48rem) and (max-width: 79.9375rem) {
-  .content > h1 {
+  .content > h1, .content > .header-area > h1 {
     margin: 1rem 0 0.5rem;
   }
 }
 @media (min-width: 80rem) {
-  .content > h1 {
+  .content > h1, .content > .header-area > h1 {
     margin: 2.5rem 0 0.5rem;
+  }
+}
+
+.banner {
+  z-index: 10;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+.banner > div {
+  width: 100%;
+  z-index: 10;
+  margin: 0 0 -30px;
+}
+.banner > div img {
+  border-radius: 10px;
+  width: 100%;
+}
+@media (min-width: 48rem) {
+  .banner > div {
+    margin: 10px 0 -90px;
+    width: 500px;
+    height: 100px;
   }
 }
 

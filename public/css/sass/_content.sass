@@ -60,12 +60,13 @@ main
 .content
     background: $background
     margin: 30px 30px
+    z-index: 5
 
     @include desktop
         margin: 0px auto 30px
         width: 60%
 
-    > h1
+    > h1, > .header-area > h1
         font-family: NeoSans
         font-size: 1.5rem
         text-transform: uppercase
@@ -76,6 +77,27 @@ main
 
         @include desktop
             margin: 2.5rem 0 .5rem
+
+.banner
+    z-index: 10
+    display: flex
+    flex-direction: row-reverse
+    align-items: flex-end
+
+.banner > div
+    width: 100%
+    z-index: 10
+    margin: 0 0 -30px
+
+    img
+        border-radius: 10px
+        width: 100%
+
+    @include tablet_plus
+        margin: 10px 0 -90px
+        width: 500px
+        height: 100px
+
 
 .grid
     display: grid

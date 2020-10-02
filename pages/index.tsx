@@ -42,6 +42,15 @@ const Home: React.FC<IHomeProps> = ({ content }) => {
             <p>Hi, I'm Ondrej. <span></span></p>
         </section>
 
+        
+        <section className="content banner">
+          <div>
+            <a href="https://youtube.com/c/ondrabus">
+                <img src="/img/youtube-banner.png" alt="Live on YouTube every Thursday 3PM BST" />
+            </a>
+          </div>
+        </section>
+
         <BlogPosts content={content} />
 
         <section className="content">
