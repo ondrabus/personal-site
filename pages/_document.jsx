@@ -1,4 +1,6 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import KontentSmartLink from '@kentico/kontent-smart-link';
+import React, { useEffect } from 'react';
 
 class MyDocument extends Document {
     static async getInitialProps(ctx){
@@ -7,6 +9,15 @@ class MyDocument extends Document {
     }
 
     render(){
+        useEffect(() => {
+            const plugin = KontentSmartLink.initialize({
+              queryParam: 'preview-mode'
+            });
+            return () => {
+              plugin.destroy();
+            };
+          });
+
         return (
             <Html>
                 <Head>
@@ -23,8 +34,9 @@ class MyDocument extends Document {
 
                         gtag('config', 'UA-126970131-1');`
                     }} />
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@kentico/kontent-smart-link@latest/dist/kontent-smart-link.styles.css"/>
                 </Head>
-                <body>
+                <body data-kontent-project-id={process.env.KC_PROJECT_ID} data-kontent-language-codename="default">
                     <Main />
                     <NextScript />
                 </body>

@@ -86,8 +86,8 @@ const BlogPosts: React.FC<IBlogPostProps> = ({content, tags, types, selectedTag,
 
             {filteredContent.length > 0 && <div className="grid">
                 {filteredContent.map((article) => (
-                    <article className="rows" key={article.url}>
-                        <h1><a href={article.url} title={article.title}>{article.title} {article.isExternal && (<i className="fa fa-external-link"></i>)}</a></h1>
+                    <article className="rows" key={article.url} data-kontent-item-id={article.id}>
+                        <h1 data-kontent-element-codename="title"><a href={article.url} title={article.title}>{article.title} {article.isExternal && (<i className="fa fa-external-link"></i>)}</a></h1>
                         <div className="cols">
                             <div className={`img ${article.type.codename === "video" || article.type.codename === "live_stream" ? 'video' : ''}`}>
                                 <a href={article.url} title={article.title}>
@@ -95,7 +95,7 @@ const BlogPosts: React.FC<IBlogPostProps> = ({content, tags, types, selectedTag,
                                 </a>
                             </div>
                             <div className="right rows">
-                                <div dangerouslySetInnerHTML={{__html: article.teaser}}></div>
+                                <div dangerouslySetInnerHTML={{__html: article.teaser}}  data-kontent-element-codename="teaser"></div>
                                 <div className="cols">
                                     <ul className="tags cols">
                                         {article.tags.map(t => (

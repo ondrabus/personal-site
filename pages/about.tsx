@@ -19,6 +19,7 @@ export const getStaticProps: GetStaticProps = async ({preview}) => {
   
   const props = {
     pageData: {
+        id: page.system.id,
         content: page.content.resolveHtml().replace(/<div[^>]*?type="application\/kenticocloud".*?>\s*(<section.*?>.*?<\/section>)\s*<\/div>/gs, '$1')
     }
   }
@@ -38,7 +39,7 @@ const About: React.FC<IPageProps> = ({ pageData }) => {
         <meta property="og:title" content="About - Ondrabus" />
       </Head>
       <Header className="withBackground fixed"></Header>
-      <main dangerouslySetInnerHTML={{__html: pageData.content}}>
+      <main data-kontent-item-id={pageData.id}  data-kontent-element-codename="content" dangerouslySetInnerHTML={{__html: pageData.content}}>
       </main>
 
       <Footer></Footer>
