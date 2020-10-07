@@ -1,6 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import KontentSmartLink from '@kentico/kontent-smart-link';
-import React, { useEffect } from 'react';
 
 class MyDocument extends Document {
     static async getInitialProps(ctx){
@@ -9,14 +7,6 @@ class MyDocument extends Document {
     }
 
     render(){
-        useEffect(() => {
-            const plugin = KontentSmartLink.initialize({
-              queryParam: 'preview-mode'
-            });
-            return () => {
-              plugin.destroy();
-            };
-          });
 
         return (
             <Html>
