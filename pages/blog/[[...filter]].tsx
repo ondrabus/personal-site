@@ -1,13 +1,14 @@
-import Header from '../../components/header';
-import Footer from '../../components/footer';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import BlogPosts from '../../components/blogPosts';
+import BlogPosts from '@/components/blogPosts';
 import React from 'react';
-import ContentService from '../../services/ContentService';
-import { transformContent } from '../../helpers/contentHelpers';
-import { IContentViewModel } from '../../viewModels/contentViewModel';
-import { ITaxonomyItemViewModel } from '../../viewModels/taxonomyItemViewModel';
+import ContentService from '@/services/ContentService';
+import { transformContent } from '@/helpers/contentHelpers';
+import { IContentViewModel } from '@/viewModels/contentViewModel';
+import { ITaxonomyItemViewModel } from '@/viewModels/taxonomyItemViewModel';
+import { motion } from 'framer-motion';
 
 
 interface IBlogProps {
@@ -67,7 +68,10 @@ export const getStaticProps: GetStaticProps = async ({preview, params}) => {
 const Blog: React.FC<IBlogProps> = ({ content, tags, types, selectedTag, selectedType }) => {
 
   return (
-    <div className="wrapper">
+    <motion.div className="wrapper"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}>
       <Head>
         <title>Published content - Ondrabus</title>
         <meta property="og:title" content="Published content - Ondrabus" />
@@ -83,7 +87,7 @@ const Blog: React.FC<IBlogProps> = ({ content, tags, types, selectedTag, selecte
 
       <Footer></Footer>
       
-    </div>
+    </motion.div>
   )
 }
 

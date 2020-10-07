@@ -27,12 +27,12 @@ const Header: React.FC<IHeaderProps> = ({className}) => {
             <nav>
                 <ul>
                     <li>
-                        <Link href="/blog" as="/blog">
+                        <Link href="/blog/[[...filter]]" as="/blog">
                             <a title="Blog posts">blog</a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/blog" as="/blog/type/video">
+                        <Link href="/blog/[[...filter]]" as="/blog/type/video">
                             <a title="Videos">videos</a>
                         </Link>
                     </li>

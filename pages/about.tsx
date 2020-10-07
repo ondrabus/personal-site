@@ -1,10 +1,11 @@
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import ContentService from '../services/ContentService';
-import { IPageViewModel } from '../viewModels/pageViewModel';
+import ContentService from '@/services/ContentService';
+import { IPageViewModel } from '@/viewModels/pageViewModel';
+import { motion } from 'framer-motion';
 
 interface IPageProps {
   pageData: IPageViewModel
@@ -28,18 +29,20 @@ export const getStaticProps: GetStaticProps = async ({preview}) => {
 const About: React.FC<IPageProps> = ({ pageData }) => {
 
   return (
-    <div className="wrapper">
+    <motion.div className="wrapper"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}>
       <Head>
         <title>About - Ondrabus</title>
         <meta property="og:title" content="About - Ondrabus" />
-        <link rel="canonical" href="/about" />
       </Head>
       <Header className="withBackground fixed"></Header>
       <main dangerouslySetInnerHTML={{__html: pageData.content}}>
       </main>
 
       <Footer></Footer>
-    </div>
+    </motion.div>
   )
 }
 

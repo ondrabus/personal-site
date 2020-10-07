@@ -1,13 +1,14 @@
 import Head from 'next/head';
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import BlogPosts from '../components/blogPosts';
+import BlogPosts from '@/components/blogPosts';
 import React from 'react';
-import ContentService from '../services/ContentService';
-import { transformContent } from '../helpers/contentHelpers';
-import { IContentViewModel } from '../viewModels/contentViewModel';
+import ContentService from '@/services/ContentService';
+import { transformContent } from '@/helpers/contentHelpers';
+import { IContentViewModel } from '@/viewModels/contentViewModel';
+import { motion } from 'framer-motion';
 
 interface IHomeProps {
   content: IContentViewModel[]
@@ -29,7 +30,10 @@ export const getStaticProps: GetStaticProps = async ({preview}) => {
 
 const Home: React.FC<IHomeProps> = ({ content }) => {
   return (
-    <div className="wrapper">
+    <motion.div className="wrapper"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}>
       <Head>
         <title>Ondrabus</title>
         <meta property="og:title" content="Ondrabus" />
@@ -75,7 +79,7 @@ const Home: React.FC<IHomeProps> = ({ content }) => {
       </div>
       <script src="/js/typing.js"></script>
       <script src="/js/scroll.js"></script>
-    </div>
+    </motion.div>
   )
 }
 

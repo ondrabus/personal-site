@@ -100,7 +100,7 @@ const BlogPosts: React.FC<IBlogPostProps> = ({content, tags, types, selectedTag,
                                     <ul className="tags cols">
                                         {article.tags.map(t => (
                                             <li key={t.codename}>
-                                                <Link href="/blog" as={`/blog/tag/${t.codename}`}>
+                                                <Link href="/blog/[[...filter]]" as={`/blog/tag/${t.codename}`}>
                                                     <a title={`All blog posts with ${t.text} tag`} className={getTagColor(t.codename)}>{t.text}</a>
                                                 </Link>
                                             </li>
