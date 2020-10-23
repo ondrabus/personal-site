@@ -42,7 +42,8 @@ const tagColors = [
     { tag: "free", color: "green" },
     { tag: "gridsome", color: "green" },
     { tag: "git", color: "orange" },
-    { tag: "graph_ql", color: "purple" }
+    { tag: "graph_ql", color: "purple" },
+    { tag: "angular", color: "red" }
 ];
 
 export function getTagColor(tag: string):string {
