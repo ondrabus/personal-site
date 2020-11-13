@@ -30,20 +30,20 @@ export const getStaticProps: GetStaticProps = async ({preview}) => {
 const About: React.FC<IPageProps> = ({ pageData }) => {
 
   return (
-    <motion.div className="wrapper"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}>
+    <React.Fragment>
       <Head>
         <title>About - Ondrabus</title>
         <meta property="og:title" content="About - Ondrabus" />
       </Head>
-      <Header className="withBackground fixed"></Header>
-      <main data-kontent-item-id={pageData.id}  data-kontent-element-codename="content" dangerouslySetInnerHTML={{__html: pageData.content}}>
+      <main data-kontent-item-id={pageData.id}  data-kontent-element-codename="content">
+        <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        dangerouslySetInnerHTML={{__html: pageData.content}}>
+        </motion.div>
       </main>
-
-      <Footer></Footer>
-    </motion.div>
+    </React.Fragment>
   )
 }
 

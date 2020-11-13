@@ -78,9 +78,7 @@ const BlogPosts: React.FC<IBlogPostProps> = ({content, tags, types, selectedTag,
     }
 
     return (
-        <section itemScope itemType="http://schema.org/Blog" className="content blog-posts">
-            <h1>Content</h1>
-
+        <React.Fragment>
             {typesList.length > 0 && <div className="filter">{typesList}</div>}
             {tagsList.length > 0 && <div className="filter">{tagsList}</div>}
 
@@ -114,8 +112,7 @@ const BlogPosts: React.FC<IBlogPostProps> = ({content, tags, types, selectedTag,
                 ))}
             </div>}
             {filteredContent.length == 0 && (<p>I haven't published any {tags.find(t => t.codename == selectedTags.values().next().value)?.text ?? ''} {types.find(t => t.codename == selectedTypes.values().next().value)?.text ?? 'content'} yet. <a href="https://twitter.com/ondrabus" title="Get in touch with me on Twitter">Let me know</a> what are you looking for.</p>)}
-
-        </section>
+        </React.Fragment>
     )
 }
 

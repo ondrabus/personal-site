@@ -805,4 +805,21 @@ footer p {
   margin: 50px 0;
 }
 
+.cheatsheet .code {
+  width: 40%;
+}
+.cheatsheet .desc {
+  width: 20%;
+}
+.cheatsheet table {
+  width: 100%;
+  margin: 0 -10px;
+}
+.cheatsheet td {
+  vertical-align: top;
+}
+.cheatsheet td:last-child {
+  vertical-align: middle;
+}
+
 /*# sourceMappingURL=main.css.map */

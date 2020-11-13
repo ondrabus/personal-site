@@ -68,26 +68,24 @@ export const getStaticProps: GetStaticProps = async ({preview, params}) => {
 const Blog: React.FC<IBlogProps> = ({ content, tags, types, selectedTag, selectedType }) => {
 
   return (
-    <motion.div className="wrapper"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}>
+    <React.Fragment>
       <Head>
         <title>Published content - Ondrabus</title>
         <meta property="og:title" content="Published content - Ondrabus" />
         <link rel="canonical" href="/blog" />
       </Head>
-      <Header className="withBackground fixed"></Header>
-
       <main>
-
-        <BlogPosts content={content} tags={tags} types={types} selectedTag={selectedTag} selectedType={selectedType} />
-
+        <section className="content blog-posts">
+          <h1>Content</h1>
+          <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}>
+              <BlogPosts content={content} tags={tags} types={types} selectedTag={selectedTag} selectedType={selectedType} />
+          </motion.div>
+        </section>
       </main>
-
-      <Footer></Footer>
-      
-    </motion.div>
+    </React.Fragment>
   )
 }
 
