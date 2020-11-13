@@ -6,8 +6,9 @@ import javascript from 'highlight.js/lib/languages/javascript';
 hljs.registerLanguage('javascript', javascript);
 
 const FetchApiCheatsheet: any  = () => {
+
   useEffect(() => {
-	hljs.initHighlightingOnLoad();
+	hljs.initHighlighting();
   }, []);
   return (
 	  <React.Fragment>
