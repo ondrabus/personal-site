@@ -805,8 +805,21 @@ footer p {
   margin: 50px 0;
 }
 
+.cheatsheet.content {
+  width: 80%;
+}
+.cheatsheet code {
+  white-space: pre-line;
+}
 .cheatsheet .code {
   width: 40%;
+}
+.cheatsheet.js-frameworks .code {
+  width: 25%;
+}
+.cheatsheet .example {
+  background: #d2f8d2;
+  margin-top: 10px;
 }
 .cheatsheet .desc {
   width: 20%;
@@ -817,9 +830,11 @@ footer p {
 }
 .cheatsheet td {
   vertical-align: top;
+  width: 30%;
 }
 .cheatsheet td:last-child {
   vertical-align: middle;
+  width: 10%;
 }
 
 /*# sourceMappingURL=main.css.map */
