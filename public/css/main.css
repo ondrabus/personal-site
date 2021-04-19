@@ -805,6 +805,16 @@ footer p {
   margin: 50px 0;
 }
 
+.twitter h1 a {
+  color: #111111;
+  text-decoration: underline;
+}
+.twitter h1 a:hover {
+  color: #ffffff;
+  background: #36c988;
+  text-decoration: none;
+}
+
 .cheatsheet.content {
   width: 80%;
 }
