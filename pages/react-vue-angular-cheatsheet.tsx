@@ -83,16 +83,16 @@ const ReactVueAngularCheatsheet: any  = () => {
 						</tr>
 						<tr>
 							<td>
-								<pre><code className="js">{`let components = collectionVariable.map((item) => <Component data={item} />);
+								<pre><code className="js">{`const components = collectionVariable.map((item) => <Component data={item} key={item.uniqueKey} />);
 ...
 <div>{components}</div>`}</code>
-<code className="js example">{`let articleComponents = articles.map((article) => <Article data={article} ... />);
+<code className="js example">{`const articleComponents = articles.map((article) => <Article data={article} key={article.id} ... />);
 ...
 <div>{articleComponents}</div>`}</code></pre>
 							</td>
 							<td>
-								<pre><code className="js">{`< ... v-for="item in collectionVariable">`}</code>
-<code className="js example">{`<article v-for="article in articles" ... >`}</code></pre>
+								<pre><code className="js">{`< ... v-for="item in collectionVariable" :key="item.uniqueKey">`}</code>
+<code className="js example">{`<article v-for="article in articles" :key="article.id" ... >`}</code></pre>
 							</td>
 							<td>
 								<pre><code className="js">{`< ... *ngFor="let item of collectionVariable">`}</code>
@@ -102,10 +102,10 @@ const ReactVueAngularCheatsheet: any  = () => {
 						</tr>
 						<tr>
 							<td>
-								<pre><code className="js">{`let components = collectionVariable.map((item, index) => <Component data={item} index={index} />);
+								<pre><code className="js">{`const components = collectionVariable.map((item, index) => <Component data={item} key={item.uniqueKey} index={index} />);
 ...
 <div>{components}</div>`}</code>
-<code className="js example">{`let articleComponents = articles.map((article) => <Article data={article} index={index} ... />);
+<code className="js example">{`const articleComponents = articles.map((article) => <Article data={article} key={article.id} index={index} ... />);
 ...
 <div>{articleComponents}</div>`}</code></pre>
 							</td>
@@ -157,8 +157,8 @@ const ReactVueAngularCheatsheet: any  = () => {
 						</tr>
 						<tr>
 							<td>
-								<pre><code className="js">{`<... className={\`classname\`}>`}</code>
-<code className="js example">{`<div className={\`sidebar__inner\`}>`}</code></pre>
+								<pre><code className="js">{`<... className="classname">`}</code>
+<code className="js example">{`<div className="sidebar__inner">`}</code></pre>
 							</td>
 							<td>
 								<pre><code className="js">{`<... class="classname">`}</code>
