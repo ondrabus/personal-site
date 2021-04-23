@@ -9,6 +9,6 @@ export default function Footer (){
             <li><a className="linkedin" href="https://www.linkedin.com/in/ondrej-polesny/" title="LinkedIn profile"><img src="/img/logos/linkedin.svg" alt="LinkedIn" /></a></li>
             <li><a className="github" href="https://github.com/ondrabus" title="GitHub profile"><img src="/img/logos/github.svg" alt="GitHub" /></a></li>
         </ul>
-        <p>&copy; 2020 Ondrej Polesny</p>
+        <p>&copy; {new Date().getFullYear()} Ondrej Polesny</p>
     </footer>);
 }
