@@ -13,8 +13,8 @@ const ReactVueAngularCheatsheet: any  = () => {
   return (
 	  <React.Fragment>
 		<Head>
-			<title>React Vue Angular cheatsheet - Ondrabus</title>
-			<meta property="og:title" content="React Vue Angular cheatsheet - Ondrabus" />
+			<title>React Vue Angular to HTML cheatsheet - Ondrabus</title>
+			<meta property="og:title" content="React Vue Angular to HTML cheatsheet - Ondrabus" />
 			<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/default.min.css"></link>
 		</Head>
 		
@@ -24,8 +24,8 @@ const ReactVueAngularCheatsheet: any  = () => {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}>
-      				<h1>React Vue Angular cheatsheet</h1>
-					<p>Download printable version: <a href="/pdf/cheatsheet-react-vue-angular.pdf" title="Printable React Vue Angular cheatsheet">React Vue Angular cheatsheet (PDF, *MB)</a></p>
+      				<h1>React Vue Angular to HTML cheatsheet</h1>
+					<p>Download printable version: <a href="/pdf/cheatsheet-react.pdf" title="Printable React to HTML cheatsheet">React (PDF, 0.9MB)</a>, <a href="/pdf/cheatsheet-vue.pdf" title="Printable Vue to HTML cheatsheet">Vue.js (PDF, 0.7MB)</a>, <a href="/pdf/cheatsheet-angular.pdf" title="Printable Angular to HTML cheatsheet">Angular (PDF, 0.7MB)</a></p>
 					<table cellSpacing="10">
 						<thead>
 							<tr>
