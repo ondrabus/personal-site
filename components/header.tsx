@@ -12,7 +12,7 @@ const Header: React.FC<IHeaderProps> = ({className}) => {
                 <Link href="/" as="/">
                     <a title="Home page">
                         <img src="/img/avatar.jpg" className="rounded" />
-                        <span>Ondrabus</span>
+                        <span>Ondrej Polesny</span>
                     </a>
                 </Link>
             </section>
