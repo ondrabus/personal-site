@@ -1,4 +1,4 @@
-import ContentService from '@/services/ContentService';
+import KontentService from '@/services/KontentService';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function preview(req: NextApiRequest, res: NextApiResponse) {
@@ -14,7 +14,6 @@ export default async function preview(req: NextApiRequest, res: NextApiResponse)
   }
 
   // Fetch the headless CMS to check if the provided `codename` exists
-  const contentService = new ContentService(true);
   if (Array.isArray(req.query.codename))
   {
     return res
@@ -22,7 +21,7 @@ export default async function preview(req: NextApiRequest, res: NextApiResponse)
       .json({ message: 'Wrong data for codename parameter.'})
   }
 
-  const page = await contentService.getPage(req.query.codename);
+  const page = await KontentService.Instance(true).getItem(req.query.codename)
 
   // If the codename doesn't exist prevent preview mode from being enabled
   if (!page) {
