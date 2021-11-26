@@ -1,22 +1,22 @@
-import { ContentModel } from '../models/content';
+import { Content } from '../models/content';
 import { IContentViewModel } from '../viewModels/contentViewModel';
 
-export function transformContent (content: ContentModel[]):IContentViewModel[] {
+export function transformContent (content: Content[]):IContentViewModel[] {
     return content.map((c) => ({
         id: c.system.id,
-        title: c.title.value,
-        imageUrl: c.cover_image_url?.value ?? c.cover_image?.value[0].url ?? '',
-        date: c.date?.value?.toISOString().split('T')[0] ?? '',
-        url: c.url.value,
-        isExternal: c.url.value.startsWith("https"),
-        teaser: c.teaser.value,
-        tags: c.content_tags.value.map(ct => ({
+        title: c.elements.title.value,
+        imageUrl: c.elements.cover_image_url?.value ?? c.elements.cover_image?.value[0].url ?? '',
+        date: c.elements.date?.value ? new Date(c.elements.date.value).toISOString().split('T')[0] : '',
+        url: c.elements.url.value,
+        isExternal: c.elements.url.value.startsWith("https"),
+        teaser: c.elements.teaser.value,
+        tags: c.elements.content_tags.value.map(ct => ({
             codename: ct.codename,
             text: ct.name
         })),
         type: ({
-            codename: c.content_type.value[0].codename,
-            text: c.content_type.value[0].name
+            codename: c.elements.content_type.value[0].codename,
+            text: c.elements.content_type.value[0].name
         })
     }));
 }

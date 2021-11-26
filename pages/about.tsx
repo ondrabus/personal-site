@@ -1,11 +1,14 @@
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import ContentService from '@/services/ContentService';
 import { IPageViewModel } from '@/viewModels/pageViewModel';
 import { motion } from 'framer-motion';
+import KontentService from '@/services/KontentService';
+import { createRichTextHtmlResolver, linkedItemsHelper } from '@kentico/kontent-delivery';
+import { Page } from '@/models/page';
+import { BlockWithImage } from '@/models/block_with_image';
+import { nodeParser } from '@kentico/kontent-delivery-node-parser'
+import { projectModel } from '@/models/_project';
 
 interface IPageProps {
   pageData: IPageViewModel
@@ -14,13 +17,38 @@ interface IPageProps {
 export const getStaticProps: GetStaticProps = async ({preview}) => {
   console.log(`Loading about page content, preview mode is ${!!preview}`);
 
-  const contentService = new ContentService(preview ?? false);
-  const page = await contentService.getPage("about");
+  const pageData = (await KontentService.Instance(preview).deliveryClient.item<Page>("about").toPromise()).data
+  console.log(pageData.item.elements.content.value)
+  const resolvedContent = createRichTextHtmlResolver(nodeParser).resolveRichText({
+    element: pageData.item.elements.content,
+    linkedItems: linkedItemsHelper.convertLinkedItemsToArray(pageData.linkedItems),
+    contentItemResolver: (codename, contentItem) => {
+      if (contentItem && contentItem.system.type === projectModel.contentTypes.block_with_image.codename) {
+        const blockWithImage = contentItem as BlockWithImage
+        return {
+          contentItemHtml:
+            `<section itemScope itemType="http://schema.org/Blog" class="content alternating">
+                <div class="img">
+                    <img src="${blockWithImage.elements.image.value[0].url}" alt="${blockWithImage.elements.title.value}" />
+                </div>
+                <div class="text">
+                    <h2>${blockWithImage.elements.title.value}</h2>
+                    ${blockWithImage.elements.content.value}
+                </div>
+            </section>`
+        }
+      }
+      return {
+        contentItemHtml: ''
+      }
+    }
+  }).html.replace(/(<\/{0,1}object[^>]*>)/gm, '')
+  
   
   const props = {
     pageData: {
-        id: page.system.id,
-        content: page.content.resolveHtml().replace(/<div[^>]*?type="application\/kenticocloud".*?>\s*(<section.*?>.*?<\/section>)\s*<\/div>/gs, '$1')
+        id: pageData.item.system.id,
+        content: resolvedContent
     }
   }
   
@@ -33,7 +61,7 @@ const About: React.FC<IPageProps> = ({ pageData }) => {
     <React.Fragment>
       <Head>
         <title>About - Ondrabus</title>
-        <meta property="og:title" content="About - Ondrabus" />
+        <meta property="og:title" content="About - Ondrej Polesny" />
       </Head>
       <main data-kontent-item-id={pageData.id}  data-kontent-element-codename="content">
         <motion.div

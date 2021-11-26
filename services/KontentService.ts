@@ -1,50 +1,44 @@
-import {
-    DeliveryClient,
-    TypeResolver,
-    ContentItem,
-    TaxonomyGroup,
-  } from '@kentico/kontent-delivery';
+import { DeliveryClient, IContentItem, IDeliveryClient, ITaxonomyGroup } from '@kentico/kontent-delivery'
   
-  import { ContentModel } from '../models/content';
-  import { PageModel } from '../models/page';
-  import { BlockWithImageModel } from '../models/block_with_image';
-  
-  class KontentService {
-    private client: DeliveryClient;
-  
-    constructor(usePreviewMode: boolean) {
-      this.client = new DeliveryClient({
-        globalQueryConfig: {
-          usePreviewMode,
-          useSecuredMode: false
-        },
-        projectId: process.env.KC_PROJECT_ID ?? '',
-        previewApiKey: process.env.KC_PREVIEW_KEY ?? '',
-        typeResolvers: [
-          new TypeResolver('content', () => new ContentModel()),
-          new TypeResolver('page', () => new PageModel()),
-          new TypeResolver('block_with_image', () => new BlockWithImageModel())
-        ],
-        linkedItemResolver: {
-          linkedItemWrapperTag: 'div'
-        }
-      });
-    }
-  
-    async getItem<T extends ContentItem>(codename: string, depth?: number): Promise<T> {
-      const response = await this.client.item<T>(codename).depthParameter(depth ?? 0).toPromise();
-      return response.item;
-    }
-  
-    async getItems<T extends ContentItem>(type: string): Promise<T[]> {
-      const response = await this.client.items<T>().type(type).toPromise();
-      return response.items;
-    }
+class KontentService {
+  private static _instance: KontentService
+  private client: DeliveryClient
 
-    async getTaxonomyItems(codename: string): Promise<TaxonomyGroup> {
-      const response = await this.client.taxonomy(codename).toPromise();
-      return response.taxonomy;
-    }
+  public get deliveryClient(): IDeliveryClient {
+    return this.client;
   }
-  
-  export default KontentService;
+
+  public static Instance(usePreviewMode = false){
+    if(!this._instance) {
+      this._instance = new KontentService(usePreviewMode);
+    }
+    return this._instance;
+  }
+
+  protected constructor(usePreviewMode: boolean) {
+    this.client = new DeliveryClient({
+      defaultQueryConfig: {
+        usePreviewMode,
+      },
+      projectId: process.env.KONTENT_PROJECT_ID ?? '',
+      previewApiKey: process.env.KONTENT_PREVIEW_KEY ?? '',
+    });
+  }
+
+  async getItem<T extends IContentItem>(codename: string, depth?: number): Promise<T> {
+    const response = await this.client.item<T>(codename).depthParameter(depth ?? 0).toPromise();
+    return response.data.item;
+  }
+
+  async getItems<T extends IContentItem>(type: string): Promise<T[]> {
+    const response = await this.client.items<T>().type(type).toPromise();
+    return response.data.items;
+  }
+
+  async getTaxonomyItems(codename: string): Promise<ITaxonomyGroup> {
+    const response = await this.client.taxonomy(codename).toPromise();
+    return response.data.taxonomy;
+  }
+}
+
+export default KontentService;

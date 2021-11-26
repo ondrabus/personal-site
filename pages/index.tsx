@@ -3,11 +3,13 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import BlogPosts from '@/components/blogPosts';
 import React, { useEffect } from 'react';
-import ContentService from '@/services/ContentService';
 import { transformContent } from '@/helpers/contentHelpers';
 import { IContentViewModel } from '@/viewModels/contentViewModel';
 import { motion } from 'framer-motion';
 import { write } from '@/helpers/typeWriter';
+import KontentService from '@/services/KontentService';
+import { projectModel } from '@/models/_project';
+import { Content } from '@/models/content';
 
 interface IHomeProps {
   content: IContentViewModel[]
@@ -16,9 +18,8 @@ interface IHomeProps {
 export const getStaticProps: GetStaticProps = async ({preview}) => {
   console.log(`Loading home page content, preview mode is ${!!preview}`);
 
-  const contentService = new ContentService(preview ?? false);
-  const allContent = await contentService.getAllContent();
-  const articles = transformContent(allContent.sort((a,b) => (b.date.value ?? new Date()).getTime()-(a.date.value ?? new Date()).getTime()).slice(0,4));
+  const allContent = await KontentService.Instance(preview).getItems<Content>(projectModel.contentTypes.content.codename)
+  const articles = transformContent(allContent.sort((a,b) => (new Date(b.elements.date.value ?? '')).getTime()-(new Date(a.elements.date.value ?? '')).getTime()).slice(0,4));
 
   const props = {
     content: articles
@@ -50,7 +51,7 @@ const Home: React.FC<IHomeProps> = ({ content }) => {
     <React.Fragment>
       <Head>
         <title>Ondrabus</title>
-        <meta property="og:title" content="Ondrabus" />
+        <meta property="og:title" content="Ondrej Polesny" />
         <meta property="og:image" content="/img/website.jpg" />
       </Head>
       
@@ -64,13 +65,13 @@ const Home: React.FC<IHomeProps> = ({ content }) => {
               <p>Hi, I'm Ondrej. <span></span></p>
           </section>
         
-          <section className="content banner">
+          {/* <section className="content banner">
             <div>
               <a href="https://youtube.com/c/ondrabus">
                   <img src="/img/youtube-banner.png" alt="Live on YouTube every Thursday 3PM BST" />
               </a>
             </div>
-          </section>
+          </section> */}
 
           <section className="content blog-posts">
             <h1>Latest content</h1>

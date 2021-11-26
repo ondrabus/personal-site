@@ -7,8 +7,8 @@ const NotFound: React.FC = () => {
   return (
     <React.Fragment>
       <Head>
-        <title>Not found - Ondrabus</title>
-        <meta property="og:title" content="Not found - Ondrabus" />
+        <title>Not found - Ondrej Polesny</title>
+        <meta property="og:title" content="Not found - Ondrej Polesny" />
       </Head>
       <main>
           <section className="content">

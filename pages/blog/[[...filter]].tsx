@@ -1,14 +1,14 @@
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import BlogPosts from '@/components/blogPosts';
 import React from 'react';
-import ContentService from '@/services/ContentService';
 import { transformContent } from '@/helpers/contentHelpers';
 import { IContentViewModel } from '@/viewModels/contentViewModel';
 import { ITaxonomyItemViewModel } from '@/viewModels/taxonomyItemViewModel';
 import { motion } from 'framer-motion';
+import KontentService from '@/services/KontentService';
+import { projectModel } from '@/models/_project';
+import { Content } from '@/models/content';
 
 
 interface IBlogProps {
@@ -20,9 +20,8 @@ interface IBlogProps {
 };
 
 export async function getStaticPaths() {
-  const contentService = new ContentService(false);
-  const contentTags = await contentService.getContentTags();
-  const contentTypes = await contentService.getContentTypes();
+  const contentTags = await KontentService.Instance().getTaxonomyItems(projectModel.taxonomies.content_tags.codename)
+  const contentTypes = await KontentService.Instance().getTaxonomyItems(projectModel.taxonomies.content_type.codename)
   
   const paths = contentTags.terms.map(t => ['tag', t.codename]).concat(contentTypes.terms.map(t => ['type', t.codename])).map(t => ({ 'params': { 'filter': t }}));
   // add also blog page index without tags and types
@@ -42,11 +41,10 @@ export const getStaticProps: GetStaticProps = async ({preview, params}) => {
   const selectedFilterType = selectedFilter[0] ?? null;
   const selectedFilterValue = selectedFilter[1] ?? null;
 
-  const contentService = new ContentService(preview ?? false);
-  const allContent = await contentService.getAllContent();
-  const articles = transformContent(allContent.sort((a,b) => (b.date.value ?? new Date()).getTime()-(a.date.value ?? new Date()).getTime()));
-  const contentTags = await contentService.getContentTags();
-  const contentTypes = await contentService.getContentTypes();
+  const allContent = await KontentService.Instance(preview).getItems<Content>(projectModel.contentTypes.content.codename)
+  const articles = transformContent(allContent.sort((a,b) => (new Date(b.elements.date.value ?? '')).getTime()-(new Date(a.elements.date.value ?? '')).getTime()));
+  const contentTags = await KontentService.Instance(preview).getTaxonomyItems(projectModel.taxonomies.content_tags.codename)
+  const contentTypes = await KontentService.Instance(preview).getTaxonomyItems(projectModel.taxonomies.content_type.codename)
 
   const props = {
     content: articles,
@@ -70,8 +68,8 @@ const Blog: React.FC<IBlogProps> = ({ content, tags, types, selectedTag, selecte
   return (
     <React.Fragment>
       <Head>
-        <title>Published content - Ondrabus</title>
-        <meta property="og:title" content="Published content - Ondrabus" />
+        <title>Published content - Ondrej Polesny</title>
+        <meta property="og:title" content="Published content - Ondrej Polesny" />
         <link rel="canonical" href="/blog" />
       </Head>
       <main>
