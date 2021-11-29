@@ -2,6 +2,7 @@ import { DeliveryClient, IContentItem, IDeliveryClient, ITaxonomyGroup } from '@
   
 class KontentService {
   private static _instance: KontentService
+  private static _previewInstance: KontentService
   private client: DeliveryClient
 
   public get deliveryClient(): IDeliveryClient {
@@ -9,10 +10,17 @@ class KontentService {
   }
 
   public static Instance(usePreviewMode = false){
-    if(!this._instance) {
-      this._instance = new KontentService(usePreviewMode);
+    if (usePreviewMode){
+      if (!this._previewInstance){
+        this._previewInstance = new KontentService(true)
+      }
+      return this._previewInstance
+    } else {
+      if(!this._instance) {
+        this._instance = new KontentService(false);
+      }
+      return this._instance;
     }
-    return this._instance;
   }
 
   protected constructor(usePreviewMode: boolean) {
@@ -20,9 +28,15 @@ class KontentService {
       defaultQueryConfig: {
         usePreviewMode,
       },
+      globalHeaders: () => usePreviewMode ? [
+        {
+          header: 'X-KC-Wait-For-Loading-New-Content',
+          value: 'true'
+        }
+      ] : [],
       projectId: process.env.KONTENT_PROJECT_ID ?? '',
       previewApiKey: process.env.KONTENT_PREVIEW_KEY ?? '',
-    });
+    })
   }
 
   async getItem<T extends IContentItem>(codename: string, depth?: number): Promise<T> {
