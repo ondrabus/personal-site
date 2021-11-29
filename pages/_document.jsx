@@ -26,7 +26,7 @@ class MyDocument extends Document {
                     }} />
                     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@kentico/kontent-smart-link@latest/dist/kontent-smart-link.styles.css"/>
                 </Head>
-                <body data-kontent-project-id={process.env.KC_PROJECT_ID} data-kontent-language-codename="default">
+                <body data-kontent-project-id={process.env.KONTENT_PROJECT_ID} data-kontent-language-codename="default">
                     <Main />
                     <NextScript />
                 </body>
