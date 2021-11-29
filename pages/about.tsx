@@ -27,7 +27,12 @@ export const getStaticProps: GetStaticProps = async ({preview}) => {
         const blockWithImage = contentItem as BlockWithImage
         return {
           contentItemHtml:
-            `<section itemScope itemType="http://schema.org/Blog" class="content alternating">
+            `<section itemScope itemType="http://schema.org/Blog" class="content alternating"
+              data-kontent-component-id="${blockWithImage.system.id}"
+              data-kontent-element-codename="${projectModel.contentTypes.block_with_image.codename}"
+              data-kontent-add-button
+              data-kontent-add-button-insert-position="after"
+              data-kontent-add-button-render-position="bottom">
                 <div class="img">
                     <img src="${blockWithImage.elements.image.value[0].url}" alt="${blockWithImage.elements.title.value}" />
                 </div>
@@ -63,7 +68,7 @@ const About: React.FC<IPageProps> = ({ pageData }) => {
         <title>About - Ondrabus</title>
         <meta property="og:title" content="About - Ondrej Polesny" />
       </Head>
-      <main data-kontent-item-id={pageData.id}  data-kontent-element-codename="content">
+      <main data-kontent-item-id={pageData.id}  data-kontent-element-codename={projectModel.contentTypes.page.elements.content.codename}>
         <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
