@@ -1,7 +1,6 @@
 name: Playwright Tests
 on:
   push:
-  pull_request:
     branches:
       - master
   issue_comment:
@@ -18,7 +17,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Test output
-        with:
-          URL: |
-            ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
-          run: echo "URL is ${{ URL }} or ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
+        run: echo "URL is ${{ URL }} or ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
