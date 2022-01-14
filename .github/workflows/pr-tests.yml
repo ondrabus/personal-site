@@ -1,8 +1,5 @@
 name: Playwright Tests
 on:
-  pull_request:
-    branches:
-      - master
   issue_comment:
     types: [edited]
 
@@ -14,5 +11,14 @@ jobs:
       - name: Capture Vercel preview URL
         id: vercel_preview_url
         uses: aaron-binary/vercel-preview-url-action@v0.0.3
-      - name: Test output
-        run: echo "We should run some tests on ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
+      - name: Prepare testing env
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - name: Run tests
+        run: npm test:e2e
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
