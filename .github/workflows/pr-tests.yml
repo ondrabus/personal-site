@@ -5,7 +5,7 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 1
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - name: Capture Vercel preview URL
