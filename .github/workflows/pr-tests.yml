@@ -12,7 +12,7 @@ jobs:
         id: vercel_preview_url
         uses: aaron-binary/vercel-preview-url-action@v0.0.3
       - name: Prepare testing env
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
