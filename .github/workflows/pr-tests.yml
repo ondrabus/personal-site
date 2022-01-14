@@ -12,4 +12,4 @@ jobs:
         id: vercel_preview_url
         uses: aaron-binary/vercel-preview-url-action@v0.0.3
       - name: Test output
-        run: echo "URL is ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
+        run: echo "URL is here ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
