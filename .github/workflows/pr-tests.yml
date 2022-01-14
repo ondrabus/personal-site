@@ -1,8 +1,5 @@
 name: Playwright Tests
 on:
-  push:
-    branches:
-      - master
   issue_comment:
     types: [edited]
 
@@ -14,7 +11,5 @@ jobs:
       - name: Capture Vercel preview URL
         id: vercel_preview_url
         uses: aaron-binary/vercel-preview-url-action@v0.0.3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Test output
         run: echo "URL is ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
