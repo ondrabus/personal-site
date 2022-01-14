@@ -1,29 +1,24 @@
 name: Playwright Tests
-on: 
+on:
   push:
   pull_request:
     branches:
       - master
-      
-env:
-  KONTENT_PROJECT_ID: ${{ secrets.KONTENT_PROJECT_ID }}
-      
+  issue_comment:
+    types: [edited]
+
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Capture Vercel preview URL
+        id: vercel_preview_url
+        uses: aaron-binary/vercel-preview-url-action@v0.0.3
         with:
-          node-version: "14"
-      - name: Install dependencies
-        run: npm ci
-      - name: Install Playwright
-        run: npx playwright install --with-deps
-      - name: Build Next.js site
-        run: npm run build
-      - name: Start the site
-        run: npm run start
-      - name: Run tests
-        run: npm test:e2e
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Test output
+        with:
+          URL: |
+            ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
+          run: echo "URL is ${{ URL }} or ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
