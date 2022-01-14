@@ -1,5 +1,8 @@
 name: Playwright Tests
 on:
+  pull_request:
+    branches:
+      - master
   issue_comment:
     types: [edited]
 
@@ -12,4 +15,4 @@ jobs:
         id: vercel_preview_url
         uses: aaron-binary/vercel-preview-url-action@v0.0.3
       - name: Test output
-        run: echo "URL is ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
+        run: echo "We should run some tests on ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
