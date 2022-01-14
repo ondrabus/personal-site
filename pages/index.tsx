@@ -53,6 +53,8 @@ const Home: React.FC<IHomeProps> = ({ content }) => {
         <title>Ondrabus</title>
         <meta property="og:title" content="Ondrej Polesny" />
         <meta property="og:image" content="/img/website.jpg" />
+        <meta property="og:url" content="https://ondrabus.com/" />
+        <link rel="canonical" href="https://ondrabus.com/" />
       </Head>
       
       <main>
