@@ -19,6 +19,6 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps
       - name: Run tests
-        run: npm test:e2e
+        run: npm run test:e2e
         env:
           PLAYWRIGHT_TEST_BASE_URL: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
