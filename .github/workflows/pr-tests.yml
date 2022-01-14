@@ -5,6 +5,9 @@ on:
     branches:
       - master
       
+env:
+  KONTENT_PROJECT_ID: ${{ secrets.KONTENT_PROJECT_ID }}
+      
 jobs:
   test:
     timeout-minutes: 60
