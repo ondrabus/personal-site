@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async ({preview}) => {
         contentItemHtml: ''
       }
     }
-  }).html.replace(/(<\/{0,1}object[^>]*>)/gm, '')
+  }).html.replace(/<object.*?data-sdk-resolved=\"1\".*?>(.*?)<\/object>/ms, '$1')
   
   
   const props = {
