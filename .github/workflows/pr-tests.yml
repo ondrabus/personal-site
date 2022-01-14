@@ -17,4 +17,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Test output
-        run: echo "URL is ${{ URL }} or ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
+        run: echo "URL is ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
