@@ -14,3 +14,5 @@ jobs:
       - name: Capture Vercel preview URL
         id: vercel_preview_url
         uses: aaron-binary/vercel-preview-url-action@v0.0.3
+      - name: Test output
+        run: echo "We should run some tests on ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}"
