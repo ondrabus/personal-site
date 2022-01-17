@@ -16,8 +16,9 @@ jobs:
         id: waitForVercelPreviewDeployment
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 5
+          max_timeout: 300
   test_e2e:
+    if: steps.test_setup.conclusion == 'success'
     name: Playwright tests
     timeout-minutes: 5
     runs-on: ubuntu-latest
